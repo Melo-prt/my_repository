@@ -14,18 +14,19 @@ class Video:
 
 
 class UrTube:
-    users = {}  # Список пользователей
+    users = []  # Список пользователей
     videos = []  # Список видео
     current_user = ''  # Текущий пользователь
 
     def log_in(self, login, password):
-        if login in self.users.keys():
-            if self.users[login] == hash(password):
-                self.current_user = str(login)
+        for user in self.users:
+            if user.nickname == login and user.password == hash(password):
+                self.current_user = user
+                return
             else:
-                print('Введен неверный пароль')
-        else:
-            print('Пользователь не найден')
+                'Неверный логин или пароль'
+                return
+            
 
     def register(self, nickname, password, age):
         if nickname in self.users.keys():
